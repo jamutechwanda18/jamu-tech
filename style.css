@@ -1,0 +1,155 @@
+/* 1. SEKTOR BODY - Background Utama Gunung */
+body {
+    background-image: url('gunung.jpg'); 
+    background-size: cover; 
+    background-repeat: no-repeat; 
+    background-attachment: fixed; 
+    background-position: center;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* 2. NAVIGASI - Menu Beranda Tebal & Jelas */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 5%;
+    background: rgba(0, 0, 0, 0.4); /* Overlay gelap agar menu terbaca */
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: 800; /* Tulisan Tebal */
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); /* Bayangan agar kontras */
+    transition: 0.3s;
+}
+
+nav ul li a:hover {
+    color: #2ecc71;
+    transform: scale(1.1);
+}
+
+.logo {
+    color: #ffffff;
+    font-weight: 900;
+    font-size: 1.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+/* 3. HERO SECTION */
+.hero {
+    height: 100vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                url('puskesmas-rawabogo.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+}
+
+.hero h1 {
+    font-size: 4rem;
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+}
+
+/* 4. KARTU TANAMAN (TOGA) - Foto Kecil & Jelas */
+.card {
+    display: flex;
+    flex-direction: column;
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    margin: 20px auto;
+    max-width: 350px; /* Membatasi lebar kartu agar rapi */
+    text-align: center;
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+}
+
+.toga-img {
+    width: 140px;           /* Ukuran foto lebih kecil */
+    height: 140px;          /* Tinggi sama agar kotak */
+    object-fit: cover;      /* Foto tajam, tidak gepeng */
+    border-radius: 50%;     /* Dibuat bulat agar lebih estetis */
+    display: block;
+    margin: 0 auto 15px;
+    border: 3px solid #27ae60;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.card h3 {
+    color: #2e7d32;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 10px;
+}
+
+/* 5. SECTIONS & LAINNYA */
+.about-section {
+    padding: 60px 10%;
+    background-color: rgba(255, 255, 255, 0.95);
+    line-height: 1.8;
+}
+
+.contact-section {
+    padding: 50px 10%;
+    background-color: rgba(44, 62, 80, 0.9);
+    color: white;
+    text-align: center;
+}
+
+.btn {
+    display: inline-block;
+    background: #27ae60;
+    color: #fff;
+    padding: 15px 35px;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: #2ecc71;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+}/* 7. FOOTER - Desain Rapi & Tulisan Putih */
+footer {
+    background-color: #2c3e50; /* Warna biru gelap */
+    color: #ffffff !important; /* Memaksa warna tulisan jadi putih */
+    text-align: center;
+    padding: 30px 20px;
+    font-size: 0.9rem;
+    border-top: 4px solid #27ae60; /* Garis hijau di atas footer */
+    line-height: 1.6;
+}
+
+footer p {
+    margin: 5px 0;
+    color: #ffffff; /* Memastikan semua paragraf di footer berwarna putih */
+}
+
+footer strong {
+    color: #2ecc71; /* Memberikan warna hijau cerah pada nama Anda agar menonjol */
+}
