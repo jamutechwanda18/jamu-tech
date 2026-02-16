@@ -5,65 +5,104 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JAMU-TECH - Puskesmas Rawabogo</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
+
+    <div class="running-text-container">
+        <marquee behavior="scroll" direction="left">
+            ✨ Selamat Datang di JAMU-TECH Puskesmas Rawabogo — "Semoga Cepat Sembuh dan Sehat Selalu" — Gunakan Tanaman Obat Keluarga (TOGA) dengan Bijak untuk Kesehatan Mandiri ✨
+        </marquee>
+    </div>
+
     <header>
-        <nav>
-            <div class="logo">JAMU-TECH</div>
-            <ul>
+        <nav class="container">
+            <div class="logo">JAMU<span>TECH</span></div>
+            <ul class="nav-links">
                 <li><a href="index.html">Beranda</a></li>
                 <li><a href="toga.html">Daftar TOGA</a></li>
-                <li><a href="#tentang">Tentang Puskesmas</a></li>
+                <li><a href="#tentang">Tentang</a></li>
                 <li><a href="#kontak">Kontak</a></li>
             </ul>
+            
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Cari tanaman..." autocomplete="off">
+                <button type="button" onclick="searchFunction()">Cari</button>
+            </div>
         </nav>
     </header>
 
     <main>
         <section class="hero">
-            <h1>JAMU-TECH</h1>
-            <p>Jalur Edukasi Mandiri Utama - Technology</p>
-            <p style="font-size: 1.2rem; margin-top: 10px;">Inovasi Edukasi Tanaman Obat Keluarga (TOGA) <br> Puskesmas Rawabogo</p>
-            <a href="toga.html" class="btn">Lihat Daftar Tanaman</a>
-        </section>
-
-        <section id="tentang" class="about-section">
-            <div class="container">
-                <h2>Tentang Puskesmas Rawabogo</h2>
-                <div class="about-content">
-                    <div class="about-text">
-                        <p>Puskesmas Rawabogo merupakan pusat kesehatan masyarakat yang berkomitmen untuk memberikan pelayanan kesehatan yang bermutu, merata, dan terjangkau di wilayah kerja Rawabogo.</p>
-                        <p>Melalui program <strong>JAMU-TECH</strong>, kami berupaya mengintegrasikan teknologi informasi dengan kearifan lokal dalam penggunaan tanaman obat keluarga guna mewujudkan masyarakat yang mandiri dalam memelihara kesehatan.</p>
-                            </ul>
-                        </div>
-                    </div>
+            <div class="hero-content">
+                <span class="badge">Inovasi Puskesmas Rawabogo</span>
+                <h1>JAMU-TECH</h1>
+                <p class="tagline">Jalur Edukasi Mandiri Utama - Technology</p>
+                <p class="description">Digitalisasi edukasi Tanaman Obat Keluarga untuk masyarakat yang lebih mandiri melalui integrasi teknologi.</p>
+                <div class="hero-btns">
+                    <a href="toga.html" class="btn btn-primary">Lihat Daftar Tanaman</a>
                 </div>
             </div>
         </section>
 
-        <section id="kontak" class="contact-section">
-            <h2>Kontak Kami</h2>
-            <div class="contact-grid">
-                <div class="contact-item">
-                    <p><strong>Alamat:</strong> Jl. Raya Simpang Tiga RT 01 Rw 11, Desa Rawabogo Kec. Ciwidey, Kabupaten Bandung.</p>
+        <section id="tentang" class="about-section container">
+            <div class="card main-card">
+                <h2>Tentang Puskesmas Rawabogo</h2>
+                <div class="about-text">
+                    <p>Puskesmas Rawabogo berkomitmen memberikan pelayanan kesehatan bermutu, merata, dan terjangkau di wilayah Kabupaten Bandung.</p>
+                    <p>Melalui program inovasi <strong>JAMU-TECH</strong>, kami mengintegrasikan teknologi informasi dengan kearifan lokal penggunaan tanaman obat keluarga.</p>
                 </div>
-                <p><strong>NOMOR WA : </strong>082129694367
-                <div class="contact-item">
-                    <p><strong>Jam Pelayanan:</strong> Puskesmas :Senin - Sabtu (07.30 - 14.00 WIB)
-                    PONED : 24 JAM</p>
+            </div>
+        </section>
+
+        <section id="kontak" class="contact-section container">
+            <h2 class="section-title">Kontak Layanan</h2>
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <h3>📍 Alamat</h3>
+                    <p>Jl. Raya Simpang Tiga RT 01 Rw 11, Desa Rawabogo Kec. Ciwidey, Kabupaten Bandung.</p>
+                </div>
+
+                <a href="https://wa.me/6282129694367" target="_blank" class="contact-card wa-link" style="text-decoration: none; color: inherit;">
+                    <h3>📞 WhatsApp</h3>
+                    <p>082129694367</p>
+                    <small style="color: #2ecc71; font-weight: bold;">Klik untuk Chat Langsung</small>
+                </a>
+
+                <div class="contact-card">
+                    <h3>⏰ Jam Pelayanan</h3>
+                    <p>Puskesmas: 07.30 - 14.00 WIB</p>
+                    <p><strong>PONED: 24 JAM</strong></p>
                 </div>
             </div>
         </section>
     </main>
 
     <footer>
-     <footer>
-        <div class="footer-content">
-            <p>&copy; 2026 JAMU-TECH</p>
-            <p><strong>Dibuat oleh:</strong> Wanda Restu Priatna AMd.,A.K </p>
-            <p>Pengelola Layanan Kesehatan | NDH 18 Angkatan 7 | Kelompok 3</p>
-            <p>Untuk memenuhi tugas LATSAR CPNS 2025 | Puskesmas Rawabogo</p>
+        <div class="footer-content container">
+            <p>&copy; 2026 <strong>JAMU-TECH</strong> | Puskesmas Rawabogo</p>
+            <div class="credits" style="font-size: 0.8rem; margin-top: 10px; opacity: 0.8;">
+                <p>Dibuat oleh: <strong>Wanda Restu Priatna AMd.,A.K</strong></p>
+                <p>Pengelola Layanan Kesehatan | NDH 18 Angkatan 7 | Kelompok 3</p>
+                <p>Tugas LATSAR CPNS 2025</p>
+            </div>
         </div>
     </footer>
+
+    <script>
+        // Logika Pencarian ke halaman toga.html
+        function searchFunction() {
+            let inputField = document.getElementById('searchInput');
+            let query = inputField.value.toLowerCase().trim();
+            if(query) {
+                window.location.href = 'toga.html?search=' + encodeURIComponent(query);
+            }
+        }
+
+        // Jalankan pencarian jika tekan Enter
+        document.getElementById('searchInput').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') { searchFunction(); }
+        });
+    </script>
 </body>
 </html>
