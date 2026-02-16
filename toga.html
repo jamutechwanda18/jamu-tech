@@ -3,90 +3,179 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daftar TOGA - JAMU-TECH</title>
+    <title>Katalog Digital TOGA - JAMU-TECH</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-green: #2e7d32;
+            --light-green: #f1f8e9;
+            --accent-green: #2ecc71;
+            --text-dark: #333;
+        }
+
+        html { scroll-behavior: smooth; font-family: 'Inter', sans-serif; }
+        body { background-color: #f4f7f6; margin: 0; color: var(--text-dark); }
+
+        header { background: var(--primary-green); color: white; padding: 1.5rem 0; text-align: center; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .logo { font-size: 1.8rem; font-weight: 800; letter-spacing: 1px; }
+        .logo span { color: var(--accent-green); }
+
+        nav ul { list-style: none; padding: 0; display: flex; justify-content: center; gap: 20px; margin-top: 15px; }
+        nav a { color: white; text-decoration: none; font-weight: 500; font-size: 0.9rem; transition: 0.3s; opacity: 0.8; }
+        nav a:hover { opacity: 1; color: var(--accent-green); }
+
+        .search-wrapper { 
+            position: sticky; top: 0; z-index: 1000; background: white; 
+            padding: 15px; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.05); 
+        }
+        #togaSearchInput { 
+            padding: 12px 25px; width: 85%; max-width: 500px; 
+            border: 2px solid #eee; border-radius: 30px; outline: none; 
+            transition: 0.3s; font-size: 1rem;
+        }
+        #togaSearchInput:focus { border-color: var(--accent-green); }
+
+        .toga-container { max-width: 1200px; margin: 20px auto; padding: 0 20px; }
+        .page-title { text-align: center; color: var(--primary-green); font-weight: 700; margin-top: 30px; }
+        
+        .category-title { 
+            background: var(--primary-green); color: white; display: inline-block; 
+            padding: 10px 25px; border-radius: 50px; margin: 40px 0 20px; font-size: 1.1rem; 
+        }
+
+        .card-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
+            gap: 25px; 
+        }
+
+        .card { 
+            border: 1px solid #eee; border-radius: 20px; padding: 20px; 
+            background: #fff; display: flex; flex-direction: column; 
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+            position: relative; box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        .card:hover { transform: translateY(-10px); box-shadow: 0 12px 25px rgba(0,0,0,0.1); }
+        .card:target { border: 2px solid var(--accent-green); background: var(--light-green); transform: scale(1.05); }
+
+        .toga-img { width: 100%; height: 180px; border-radius: 15px; object-fit: cover; margin-bottom: 15px; }
+        .card h3 { margin: 10px 0 5px; color: var(--primary-green); font-size: 1.2rem; }
+        
+        .proses { 
+            background: var(--light-green); padding: 15px; border-radius: 12px; 
+            font-size: 0.85rem; margin: 15px 0; border-left: 5px solid var(--primary-green); 
+            color: #1b5e20; line-height: 1.5; text-align: left;
+        }
+
+        .qr-area { margin-top: auto; padding-top: 15px; border-top: 1px dashed #ccc; text-align: center; }
+        .qr-img { width: 80px; height: 80px; margin-bottom: 5px; opacity: 0.8; }
+
+        footer { background: #1b5e20; color: white; text-align: center; padding: 40px 20px; margin-top: 60px; }
+        
+        @media (max-width: 600px) {
+            .card-grid { grid-template-columns: 1fr; }
+            .logo { font-size: 1.5rem; }
+        }
+    </style>
 </head>
-<body class="toga-page">
+<body>
 
     <header>
-        <nav class="container">
-            <div class="logo">JAMU<span>TECH</span></div>
-            <ul class="nav-links">
+        <div class="logo">JAMU<span>TECH</span></div>
+        <nav>
+            <ul>
                 <li><a href="index.html">Beranda</a></li>
                 <li><a href="toga.html">Daftar TOGA</a></li>
             </ul>
-            <div class="search-box">
-                <input type="text" id="togaSearchInput" placeholder="Cari tanaman atau khasiat..." onkeyup="filterTanaman()" autocomplete="off">
-            </div>
         </nav>
     </header>
 
-    <main class="container">
-        <section class="toga-list-section">
-            <h1 style="text-align: center; color: white; margin: 30px 0; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">Daftar Tanaman Obat (TOGA)</h1>
-            
-            <div class="toga-grid" id="togaGrid">
-                <div class="card" data-name="daun dewa peredaran darah memar">
-                    <img src="gambar/daun-dewa.jpg" alt="Daun Dewa" class="toga-img">
-                    <h3>Daun Dewa</h3>
-                    <p>Membantu melancarkan peredaran darah dan mengobati luka memar.</p>
-                    <a href="detail.html#toga1" class="btn">Detail Khasiat</a>
-                </div>
+    <div class="search-wrapper">
+        <input type="text" id="togaSearchInput" placeholder="Cari tanaman atau khasiat (misal: asma)..." onkeyup="searchToga()">
+    </div>
 
-                <div class="card" data-name="seledri darah tinggi hipertensi">
-                    <img src="gambar/seledri.jpg" alt="Seledri" class="toga-img">
-                    <h3>Seledri</h3>
-                    <p>Bermanfaat untuk menurunkan tekanan darah tinggi (hipertensi).</p>
-                    <a href="detail.html#toga2" class="btn">Detail Khasiat</a>
-                </div>
+    <main class="toga-container">
+        <h1 class="page-title">Katalog & Dosis TOGA Puskesmas Rawabogo</h1>
+        <p style="text-align: center; color: #666;">Scan barcode pada papan tanaman untuk informasi dosis lengkap.</p>
 
-                </div>
-        </section>
+        <h3 class="category-title">Bagian Daun & Batang</h3>
+        <div class="card-grid">
+            <div class="card" id="toga1"><img src="daundewa.jpg" class="toga-img"><h3>1. Daun Dewa</h3><p>Muntah Darah</p><div class="proses">Dosis: Rebus 15-30g daun segar dengan 3 gelas air hingga sisa 1 gelas.</div><div class="qr-area"><img src="qr1.png" class="qr-img"><br><small>ID: #toga1</small></div></div>
+            <div class="card" id="toga2"><img src="seledri.jpg" class="toga-img"><h3>2. Seledri</h3><p>Darah Tinggi</p><div class="proses">Dosis: Makan 2-3 tangkai segar setiap hari sebagai lalapan.</div><div class="qr-area"><img src="qr2.png" class="qr-img"><br><small>ID: #toga2</small></div></div>
+            <div class="card" id="toga3"><img src="daunkelor.jpg" class="toga-img"><h3>3. Daun Kelor</h3><p>Panas Dalam</p><div class="proses">Dosis: Masak 1-2 genggam daun sebagai sayur bening.</div><div class="qr-area"><img src="qr3.png" class="qr-img"><br><small>ID: #toga3</small></div></div>
+            <div class="card" id="toga4"><img src="bayamduri.jpg" class="toga-img"><h3>4. Daun Bayam Duri</h3><p>Kurang Darah</p><div class="proses">Dosis: Rebus 1 genggam daun & akar dengan 2 gelas air sisa 1 gelas.</div><div class="qr-area"><img src="qr4.png" class="qr-img"><br><small>ID: #toga4</small></div></div>
+            <div class="card" id="toga5"><img src="saga.jpg" class="toga-img"><h3>5. Saga</h3><p>Batuk & Sariawan</p><div class="proses">Dosis: Rendam daun dalam air panas, gunakan untuk berkumur.</div><div class="qr-area"><img src="qr5.png" class="qr-img"><br><small>ID: #toga5</small></div></div>
+            <div class="card" id="toga6"><img src="pacarcina.jpg" class="toga-img"><h3>6. Pacar Cina</h3><p>Penyakit Kelamin</p><div class="proses">Dosis: Rebus 10g daun dalam 2 gelas air, minum 2x sehari.</div><div class="qr-area"><img src="qr6.png" class="qr-img"><br><small>ID: #toga6</small></div></div>
+            <div class="card" id="toga7"><img src="landep.jpg" class="toga-img"><h3>7. Landep</h3><p>Rematik</p><div class="proses">Dosis: Tumbuk daun segar, balurkan pada bagian yang sakit.</div><div class="qr-area"><img src="qr7.png" class="qr-img"><br><small>ID: #toga7</small></div></div>
+            <div class="card" id="toga8"><img src="miana.jpg" class="toga-img"><h3>8. Miana</h3><p>Wasir</p><div class="proses">Dosis: Rebus 15 lembar daun dengan 2 gelas air hingga sisa 1 gelas.</div><div class="qr-area"><img src="qr8.png" class="qr-img"><br><small>ID: #toga8</small></div></div>
+            <div class="card" id="toga9"><img src="daunsirih.jpg" class="toga-img"><h3>9. Daun Sirih</h3><p>Antiseptik</p><div class="proses">Dosis: Rebus 3-5 lembar daun, gunakan airnya untuk cuci luka.</div><div class="qr-area"><img src="qr9.png" class="qr-img"><br><small>ID: #toga9</small></div></div>
+            <div class="card" id="toga10"><img src="kayumanis.jpg" class="toga-img"><h3>10. Kayu Manis</h3><p>Sesak Nafas</p><div class="proses">Dosis: Seduh 1 batang kecil dengan air panas 200ml.</div><div class="qr-area"><img src="qr10.png" class="qr-img"><br><small>ID: #toga10</small></div></div>
+            <div class="card" id="toga11"><img src="brotowali.jpg" class="toga-img"><h3>11. Brotowali</h3><p>Diabetes/Demam</p><div class="proses">Dosis: Rebus 10cm batang dengan 3 gelas air sisa 1 gelas.</div><div class="qr-area"><img src="qr11.png" class="qr-img"><br><small>ID: #toga11</small></div></div>
+            <div class="card" id="toga12"><img src="kumiskucing.jpg" class="toga-img"><h3>12. Kumis Kucing</h3><p>Infeksi Saluran Kemih</p><div class="proses">Dosis: Rebus 1 genggam daun dengan 2 gelas air.</div><div class="qr-area"><img src="qr12.png" class="qr-img"><br><small>ID: #toga12</small></div></div>
+            <div class="card" id="toga13"><img src="murbei.jpg" class="toga-img"><h3>13. Murbei</h3><p>Kolesterol</p><div class="proses">Dosis: Rebus 10 lembar daun segar dalam 2 gelas air.</div><div class="qr-area"><img src="qr13.png" class="qr-img"><br><small>ID: #toga13</small></div></div>
+            <div class="card" id="toga14"><img src="daunsalam.jpg" class="toga-img"><h3>14. Daun Salam</h3><p>Kolesterol/Maag</p><div class="proses">Dosis: Rebus 10-15 lembar daun dengan 3 gelas air sisa 1 gelas.</div><div class="qr-area"><img src="qr14.png" class="qr-img"><br><small>ID: #toga14</small></div></div>
+            <div class="card" id="toga15"><img src="lidahbuaya.jpg" class="toga-img"><h3>15. Lidah Buaya</h3><p>Luka Bakar</p><div class="proses">Dosis: Oleskan gel bagian dalam daun pada luka bakar ringan.</div><div class="qr-area"><img src="qr15.png" class="qr-img"><br><small>ID: #toga15</small></div></div>
+            <div class="card" id="toga16"><img src="tapakdara.jpg" class="toga-img"><h3>16. Tapak Dara</h3><p>Diabetes</p><div class="proses">Dosis: Rebus 7 lembar daun dengan 2 gelas air.</div><div class="qr-area"><img src="qr16.png" class="qr-img"><br><small>ID: #toga16</small></div></div>
+            <div class="card" id="toga17"><img src="daunkatuk.jpg" class="toga-img"><h3>17. Daun Katuk</h3><p>Melancarkan ASI</p><div class="proses">Dosis: Konsumsi sebagai sayuran masak secara teratur.</div><div class="qr-area"><img src="qr17.png" class="qr-img"><br><small>ID: #toga17</small></div></div>
+            <div class="card" id="toga18"><img src="daunpandan.jpg" class="toga-img"><h3>18. Daun Pandan</h3><p>Darah Tinggi</p><div class="proses">Dosis: Rebus 2 lembar daun, minum airnya selagi hangat.</div><div class="qr-area"><img src="qr18.png" class="qr-img"><br><small>ID: #toga18</small></div></div>
+            <div class="card" id="toga19"><img src="sambiloto.jpg" class="toga-img"><h3>19. Sambiloto</h3><p>Antibiotik Alami</p><div class="proses">Dosis: Rebus 10-15g daun kering, minum air rebusannya.</div><div class="qr-area"><img src="qr19.png" class="qr-img"><br><small>ID: #toga19</small></div></div>
+            <div class="card" id="toga20"><img src="kemangi.jpg" class="toga-img"><h3>20. Kemangi</h3><p>Bau Badan</p><div class="proses">Dosis: Makan segenggam daun segar sebagai lalapan.</div><div class="qr-area"><img src="qr20.png" class="qr-img"><br><small>ID: #toga20</small></div></div>
+            <div class="card" id="toga21"><img src="daunmint.jpg" class="toga-img"><h3>21. Daun Mint</h3><p>Mual/Nafas</p><div class="proses">Dosis: Seduh 5 lembar daun segar dengan air panas.</div><div class="qr-area"><img src="qr21.png" class="qr-img"><br><small>ID: #toga21</small></div></div>
+        </div>
+
+        <h3 class="category-title">Bagian Akar & Rimpang</h3>
+        <div class="card-grid">
+            <div class="card" id="toga22"><img src="pulepandak.jpg" class="toga-img"><h3>22. Pule Pandak</h3><p>Darah Tinggi</p><div class="proses">Dosis: Seduh 100mg bubuk akar kering dengan air panas.</div><div class="qr-area"><img src="qr22.png" class="qr-img"><br><small>ID: #toga22</small></div></div>
+            <div class="card" id="toga23"><img src="jahe.jpg" class="toga-img"><h3>23. Jahe</h3><p>Asma/Hangat</p><div class="proses">Dosis: Geprek 2 ruas jahe, rebus dengan 1 gelas air.</div><div class="qr-area"><img src="qr23.png" class="qr-img"><br><small>ID: #toga23</small></div></div>
+            <div class="card" id="toga24"><img src="kencur.jpg" class="toga-img"><h3>24. Kencur</h3><p>Sakit Kepala</p><div class="proses">Dosis: Parut 2 ruas kencur, peras, tambahkan sedikit garam.</div><div class="qr-area"><img src="qr24.png" class="qr-img"><br><small>ID: #toga24</small></div></div>
+            <div class="card" id="toga25"><img src="kunyit.jpg" class="toga-img"><h3>25. Kunyit</h3><p>Hepatitis/Diare</p><div class="proses">Dosis: Parut 1 ruas kunyit, seduh air hangat, saring.</div><div class="qr-area"><img src="qr25.png" class="qr-img"><br><small>ID: #toga25</small></div></div>
+            <div class="card" id="toga26"><img src="lempuyung.jpg" class="toga-img"><h3>26. Lempuyung</h3><p>Nafsu Makan</p><div class="proses">Dosis: Parut rimpang, seduh dengan air hangat.</div><div class="qr-area"><img src="qr26.png" class="qr-img"><br><small>ID: #toga26</small></div></div>
+            <div class="card" id="toga27"><img src="lengkuas.jpg" class="toga-img"><h3>27. Lengkuas</h3><p>Panu/Jamur</p><div class="proses">Dosis: Gosokkan irisan rimpang pada kulit yang berjamur.</div><div class="qr-area"><img src="qr27.png" class="qr-img"><br><small>ID: #toga27</small></div></div>
+            <div class="card" id="toga28"><img src="alangalang.jpg" class="toga-img"><h3>28. Alang-alang</h3><p>Pelancar Urine</p><div class="proses">Dosis: Rebus 1 genggam akar dengan 2 gelas air sisa 1 gelas.</div><div class="qr-area"><img src="qr28.png" class="qr-img"><br><small>ID: #toga28</small></div></div>
+            <div class="card" id="toga29"><img src="bangle.jpg" class="toga-img"><h3>29. Bangle</h3><p>Sakit Kepala</p><div class="proses">Dosis: Parut rimpang, gunakan sebagai kompres di dahi.</div><div class="qr-area"><img src="qr29.png" class="qr-img"><br><small>ID: #toga29</small></div></div>
+            <div class="card" id="toga30"><img src="pepaya.jpg" class="toga-img"><h3>30. Akar Pepaya</h3><p>Obat Cacing</p><div class="proses">Dosis: Rebus 1 ruas akar dengan 1 gelas air, saring.</div><div class="qr-area"><img src="qr30.png" class="qr-img"><br><small>ID: #toga30</small></div></div>
+        </div>
+
+        <h3 class="category-title">Bagian Biji</h3>
+        <div class="card-grid">
+            <div class="card" id="toga31"><img src="kecubung.jpg" class="toga-img"><h3>31. Kecubung</h3><p>Asma (Luar)</p><div class="proses">Dosis: Obat luar saja. Jangan ditelan (beracun).</div><div class="qr-area"><img src="qr31.png" class="qr-img"><br><small>ID: #toga31</small></div></div>
+            <div class="card" id="toga32"><img src="kapurbarus.jpg" class="toga-img"><h3>32. Kapur Barus</h3><p>Gatal-gatal</p><div class="proses">Dosis: Larutkan dalam minyak kelapa, oles pada area gatal.</div><div class="qr-area"><img src="qr32.png" class="qr-img"><br><small>ID: #toga32</small></div></div>
+            <div class="card" id="toga33"><img src="pinang.jpg" class="toga-img"><h3>33. Pinang</h3><p>Obat Cacing</p><div class="proses">Dosis: Rebus irisian 1/2 biji pinang tua dengan 2 gelas air.</div><div class="qr-area"><img src="qr33.png" class="qr-img"><br><small>ID: #toga33</small></div></div>
+            <div class="card" id="toga34"><img src="kedawung.jpg" class="toga-img"><h3>34. Kedawung</h3><p>Mulas/Diare</p><div class="proses">Dosis: Sangrai biji, haluskan, seduh 1 sdt dengan air panas.</div><div class="qr-area"><img src="qr34.png" class="qr-img"><br><small>ID: #toga34</small></div></div>
+            <div class="card" id="toga35"><img src="pala.jpg" class="toga-img"><h3>35. Pala</h3><p>Insomnia</p><div class="proses">Dosis: Seduh sedikit parutan biji pala dengan air hangat.</div><div class="qr-area"><img src="qr35.png" class="qr-img"><br><small>ID: #toga35</small></div></div>
+            <div class="card" id="toga36"><img src="jamblang.jpg" class="toga-img"><h3>36. Jamblang (Biji)</h3><p>Diabetes</p><div class="proses">Dosis: Tumbuk biji kering, seduh 1 sdm bubuknya.</div><div class="qr-area"><img src="qr36.png" class="qr-img"><br><small>ID: #toga36</small></div></div>
+        </div>
+
+        <h3 class="category-title">Bagian Buah</h3>
+        <div class="card-grid">
+            <div class="card" id="toga37"><img src="delima.jpg" class="toga-img"><h3>37. Delima</h3><p>Cacing Pita</p><div class="proses">Dosis: Rebus kulit buah delima kering, minum airnya.</div><div class="qr-area"><img src="qr37.png" class="qr-img"><br><small>ID: #toga37</small></div></div>
+            <div class="card" id="toga38"><img src="jeruknipis.jpg" class="toga-img"><h3>38. Jeruk Nipis</h3><p>Batuk/Demam</p><div class="proses">Dosis: Peras 1 buah, campur madu/kecap, minum 3x sehari.</div><div class="qr-area"><img src="qr38.png" class="qr-img"><br><small>ID: #toga38</small></div></div>
+            <div class="card" id="toga39"><img src="cabaimerah.jpg" class="toga-img"><h3>39. Cabai Merah</h3><p>Rematik (Luar)</p><div class="proses">Dosis: Tumbuk buah, campur minyak, balurkan pada area sakit.</div><div class="qr-area"><img src="qr39.png" class="qr-img"><br><small>ID: #toga39</small></div></div>
+            <div class="card" id="toga40"><img src="belimbingwuluh.jpg" class="toga-img"><h3>40. Belimbing Wuluh</h3><p>Darah Tinggi</p><div class="proses">Dosis: Rebus 3 buah belimbing wuluh, minum air rebusannya.</div><div class="qr-area"><img src="qr40.png" class="qr-img"><br><small>ID: #toga40</small></div></div>
+            <div class="card" id="toga41"><img src="mengkudu.jpg" class="toga-img"><h3>41. Mengkudu</h3><p>Amandel/Liver</p><div class="proses">Dosis: Parut buah matang, peras airnya, minum dengan madu.</div><div class="qr-area"><img src="qr41.png" class="qr-img"><br><small>ID: #toga41</small></div></div>
+            <div class="card" id="toga42"><img src="kapulaga.jpg" class="toga-img"><h3>42. Kapulaga</h3><p>Mual/Kembung</p><div class="proses">Dosis: Rebus 5 butir buah kapulaga, minum airnya.</div><div class="qr-area"><img src="qr42.png" class="qr-img"><br><small>ID: #toga42</small></div></div>
+            <div class="card" id="toga43"><img src="stroberi.jpg" class="toga-img"><h3>43. Stroberi</h3><p>Kesehatan Gigi</p><div class="proses">Dosis: Hancurkan 1 buah, gosokkan pada gigi untuk pemutih.</div><div class="qr-area"><img src="qr43.png" class="qr-img"><br><small>ID: #toga43</small></div></div>
+        </div>
     </main>
 
-    <script>
-        // SCRIPT UNTUK MENANGKAP PENCARIAN DARI INDEX ATAU QR
-        window.onload = function() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const searchQuery = urlParams.get('search');
-            
-            if (searchQuery) {
-                const searchBox = document.getElementById('togaSearchInput');
-                searchBox.value = decodeURIComponent(searchQuery);
-                filterTanaman(); 
-            }
-        };
+    <footer>
+        <p><strong>JAMU-TECH</strong> &copy; 2026</p>
+        <p>Puskesmas Rawabogo | Wanda Restu Priatna AMd.,A.K</p>
+    </footer>
 
-        // FUNGSI FILTER
-        function filterTanaman() {
+    <script>
+        function searchToga() {
             let input = document.getElementById('togaSearchInput').value.toLowerCase();
             let cards = document.getElementsByClassName('card');
-            let found = false;
-
+            
             for (let i = 0; i < cards.length; i++) {
-                let name = cards[i].getAttribute('data-name').toLowerCase();
-                if (name.includes(input)) {
-                    cards[i].style.display = "flex"; 
-                    found = true;
+                let cardContent = cards[i].innerText.toLowerCase();
+                if (cardContent.includes(input)) {
+                    cards[i].style.display = "";
                 } else {
-                    cards[i].style.display = "none"; 
+                    cards[i].style.display = "none";
                 }
-            }
-            
-            let grid = document.getElementById('togaGrid');
-            let existingMsg = document.getElementById('noResultMsg');
-            
-            if (!found) {
-                if (!existingMsg) {
-                    let msg = document.createElement('p');
-                    msg.id = 'noResultMsg';
-                    msg.innerHTML = "Tanaman tidak ditemukan. Coba kata kunci lain.";
-                    msg.style.cssText = "color: white; text-align: center; grid-column: 1/-1; padding: 20px; background: rgba(0,0,0,0.3); border-radius: 10px;";
-                    grid.appendChild(msg);
-                }
-            } else {
-                if (existingMsg) existingMsg.remove();
             }
         }
     </script>
